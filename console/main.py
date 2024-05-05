@@ -8,6 +8,7 @@ from prompt_toolkit.lexers import PygmentsLexer
 from prompt_toolkit.styles import Style
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 from prompt_toolkit.history import FileHistory
+from console import common as funtions
 
 COMMAND_LIST  = ["MODE", "DISC", "CPC", "CAT","SAVE", "CLS", "BORDER", "EXIT"]
 COMMAND_LIST2 = ["|ERA"]
@@ -50,7 +51,8 @@ def main():
     os.system('clear')
     # print(os.getcwd())
     load_dotenv(dotenv_path=os.getcwd() + '/tests/prueba2/cfg/CPCReady.cfg')
-    print("Ready")
+    
+    funtions.cpcModels(os.getenv("MODEL"))
 
     sessions = PromptSession(style=style, completer=sql_completer, cursor=CursorShape.BLOCK)
 
