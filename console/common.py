@@ -1,4 +1,23 @@
+import os
+import configparser
+from pathlib import Path
 
+def readKey(File, key, default="Key not found"):
+    config = configparser.ConfigParser()
+    archivo = Path(File)
+    with open(archivo, "r") as f:
+        contenido = f.read()
+    if not contenido.strip().startswith("["):
+        contenido = "[DEFAULT]\n" + contenido
+    config.read_string(contenido)
+    readkey = config.get("DEFAULT", key, fallback=default)
+    return readkey
+
+def executeCommand(command):
+    # Ejecutar el comando y capturar la salida
+    with os.popen(command) as resultado:
+        salida = resultado.read()
+        print(salida)
 
 def cpcModels(model):
     
