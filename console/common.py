@@ -6,11 +6,11 @@ from prompt_toolkit.shortcuts import message_dialog
 from prompt_toolkit.styles import Style
 
 dialog_style = Style.from_dict({
-    'dialog':             'bg:#000000',
-    'dialog frame.label': 'bg:#000000 #ffffff',
-    'dialog.body':        'bg:#000000 #ffff00',
-    'dialog shadow':      'bg:#000000',
-    'dialog button':      'bg:#ffffff #000000',
+    'dialog':             'bg:#000080',
+    'dialog frame.label': 'bg:#000080 #ffffff',
+    'dialog.body':        'bg:#000080 #ffffff',
+    'dialog shadow':      'bg:#000080',
+    'dialog button':      'bg:green red',
 })
 
 def about():

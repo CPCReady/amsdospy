@@ -17,19 +17,29 @@ from console import common as functions  # Renombrado para consistencia
 from prompt_toolkit.shortcuts import message_dialog
 
 # Configuración global
-COMMAND_LIST = ["ABOUT", "CLS", "CPC", "DISC", "MODE", "NEW", "RUN", "SAVE", "EXIT"]
+COMMAND_LIST = ["ABOUT", "CLS", "CPC", "DISC", "MODE", "NEW", "RUN", "SAVE", "EXIT","GIT"]
 CONFIG_CPCREADY = os.path.join(os.getcwd(), "cfg", "CPCReady.cfg")
 CONFIG_HISTORY = os.path.join(os.getcwd(), "cfg", ".history")
 
 # Estilo para formatear texto
 style = Style.from_dict({
-    "": "#ffff00", # Default style.
+    # "": "#ffff00", # Default style.
     "red": "fg:red bold",
-    'rprompt': 'bg:#ff0066 #ffffff',
+    # 'rprompt': 'bg:#ff0066 #ffffff',
 })
 
-def get_rprompt():
-    return '<rprompt>'
+# def get_rprompt():
+#     return '<rprompt>'
+
+def bye():
+    print_formatted_text(
+        HTML("<white>\nCPCReady v1.0.0</white>"),
+        style=style,
+    )
+    print_formatted_text(
+        HTML("<white>Goodbye!\n</white>"),
+        style=style,
+    )
 
 # Prompt session con autocompletado y toolbar dinámico
 session = PromptSession(
@@ -37,7 +47,7 @@ session = PromptSession(
     cursor=CursorShape.BLOCK,
     auto_suggest=AutoSuggestFromHistory(),
     history=FileHistory(CONFIG_HISTORY),
-    rprompt=get_rprompt,
+    # rprompt=get_rprompt,
     style=style,
 )
 
@@ -83,10 +93,7 @@ def main():
             )
         except KeyboardInterrupt:
             os.system("clear")
-            print_formatted_text(
-                HTML("<yellow>Goodbye!</yellow>"),
-                style=style,
-            )
+            bye()
             sys.exit(1)
         except EOFError:
             break
@@ -99,10 +106,7 @@ def main():
                 if main_command in COMMAND_LIST:
                     if main_command == "EXIT":
                         os.system("clear")
-                        print_formatted_text(
-                            HTML("<yellow>Goodbye!</yellow>"),
-                            style=style,
-                        )
+                        bye()
                         sys.exit(0)
                     elif main_command == "ABOUT":
                         functions.about()
