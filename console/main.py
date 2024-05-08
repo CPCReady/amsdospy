@@ -18,7 +18,7 @@ from console import common as functions  # Renombrado para consistencia
 from prompt_toolkit.shortcuts import message_dialog
 
 # Configuración global
-COMMAND_LIST = ["ABOUT", "CLS", "CPC", "DISC", "MODE", "NEW", "RUN", "SAVE", "EXIT","GIT"]
+COMMAND_LIST = ["ABOUT", "CLS", "CPC", "DISC", "MODE", "NEW", "RUN", "SAVE", "EXIT","GIT","CAT","DIR"]
 CONFIG_CPCREADY = os.path.join(os.getcwd(), "cfg", "CPCReady.cfg")
 CONFIG_HISTORY = os.path.join(os.getcwd(), "cfg", ".history")
 
@@ -81,7 +81,9 @@ def main():
             HTML("<red>There is no CPCReady project. Cannot use Amstrad console.</red>"),
             style=style,
         )
-        sys.exit(1)
+        print()
+        input('Press Enter to continue...')
+        exit()
 
     # Configurar según el modelo
     functions.cpcModels(functions.readKey(CONFIG_CPCREADY, "MODEL"),functions.readKey(CONFIG_CPCREADY, "EMULATOR").replace('"', ""))
