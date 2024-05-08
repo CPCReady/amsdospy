@@ -8,6 +8,7 @@ from prompt_toolkit import (
     HTML,
     prompt,
 )
+
 from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.cursor_shapes import CursorShape
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
@@ -25,6 +26,7 @@ CONFIG_HISTORY = os.path.join(os.getcwd(), "cfg", ".history")
 style = Style.from_dict({
     # "": "#ffff00", # Default style.
     "red": "fg:red bold",
+    "bottom-toolbar": "fg:#828282 bg:#ffffff",
     # 'rprompt': 'bg:#ff0066 #ffffff',
 })
 
@@ -53,18 +55,20 @@ session = PromptSession(
 
 # Función para el toolbar dinámico
 def status_toolbar():
+    if functions.readKey(CONFIG_CPCREADY, "MODEL") == "6128":
+        logo_text = "128K ORDENADOR PERSONAL"
+    elif functions.readKey(CONFIG_CPCREADY, "MODEL") == "664" or  functions.readKey(CONFIG_CPCREADY, "MODEL") == "464":
+        logo_text = "64K COLOUR PERSONAL COMPUTER"
+        
     return HTML(
-        "<red> </red><green> </green><blue> </blue> <b>AMSTRAD CPC "
-        + functions.readKey(CONFIG_CPCREADY, "MODEL")
+        "<red> </red><green> </green><blue> </blue> <b>AMSTRAD <i>" + logo_text + " </i> "
         + "</b>    <b>MODE: </b>"
         + functions.readKey(CONFIG_CPCREADY, "MODE")
-        + "    <b>DISC: </b>"
+        + "    <b>DRIVE A: </b>"
         + functions.readKey(CONFIG_CPCREADY, "DISC").replace('"', "")
         + "    <b>EMULATOR: </b>"
         + functions.readKey(CONFIG_CPCREADY, "EMULATOR").replace('"', "")
     )
-
-
 
 
 def main():
