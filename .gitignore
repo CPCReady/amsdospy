@@ -4,6 +4,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 .develop
+NOTAS.TXT
 # C extensions
 *.so
 .DS_Store
