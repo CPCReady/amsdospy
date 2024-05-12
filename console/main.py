@@ -18,7 +18,7 @@ from console import common as functions  # Renombrado para consistencia
 from prompt_toolkit.shortcuts import message_dialog
 
 # Configuración global
-COMMAND_LIST = ["ABOUT", "CLS", "CPC", "DISC", "MODE", "NEW", "RUN", "SAVE", "EXIT","GIT","CAT","DIR"]
+COMMAND_LIST = ["ABOUT", "CLS", "CPC", "DISC", "MODE", "NEW", "RUN", "SAVE", "EXIT","GIT","CAT","DIR", "EMULATOR", "LCAT"]
 CONFIG_CPCREADY = os.path.join(os.getcwd(), "cfg", "CPCReady.cfg")
 CONFIG_HISTORY = os.path.join(os.getcwd(), "cfg", ".history")
 
