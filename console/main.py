@@ -86,9 +86,10 @@ def main():
         exit()
 
     # Configurar según el modelo
-    functions.cpcModels(functions.readKey(CONFIG_CPCREADY, "MODEL"),functions.readKey(CONFIG_CPCREADY, "EMULATOR").replace('"', ""))
+    functions.cpcModels(functions.readKey(CONFIG_CPCREADY, "MODEL"),functions.readKey(CONFIG_CPCREADY, "EMULATOR").replace('"', "").lower())
 
     # Ciclo para el prompt
+
     while True:
         try:
             # Obtener el comando del usuario con un toolbar actualizado
