@@ -33,3 +33,4 @@ jobs:
           files: dist/console-${{ steps.extract_version.outputs.version }}.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
