@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Consola Amstrad",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "console.main",
             "cwd": "${workspaceFolder}/tests/prueba",
