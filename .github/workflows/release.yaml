@@ -13,12 +13,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3.1.0
-      # - name: Install gh
-      #   run: |
-      #     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-      #     sudo apt-add-repository https://cli.github.com/packages
-      #     sudo apt update
-      #     sudo apt install gh
+
       - name: Install Poetry
         run: |
           pip3 install poetry
@@ -26,6 +21,7 @@ jobs:
           poetry install
           poetry build
           ls -l dist
+
       - name: Extract version from pyproject.toml
         id: extract_version
         run: |
@@ -33,15 +29,13 @@ jobs:
           echo "Version: $VERSION"
           echo "::set-output name=version::$VERSION"
 
-
-          
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dist/console-0.1.0.tar.gz
+          file: dist/console-${{ steps.extract_version.outputs.version }}.tar.gz
           asset_name: console
-          tag: ${{ github.ref }}
+          tag: v${{ steps.extract_version.outputs.version }}
           overwrite: true
           body: "This is my release text"
 
