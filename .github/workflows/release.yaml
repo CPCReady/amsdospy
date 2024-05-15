@@ -39,7 +39,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dist/console-1.0.0.tar.gz
+          file: dist/console-0.1.0.tar.gz
           asset_name: console
           tag: ${{ github.ref }}
           overwrite: true
