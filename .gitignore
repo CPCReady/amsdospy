@@ -5,6 +5,8 @@ __pycache__/
 *$py.class
 .develop
 NOTAS.TXT
+.secrets
+.env
 # C extensions
 *.so
 .DS_Store

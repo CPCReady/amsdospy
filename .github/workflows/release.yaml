@@ -1,9 +1,9 @@
 name: Install Poetry on Push
 
 on:
-  push:
+  pull_request:
     branches:
-      - main  # Cambia esto al nombre de tu rama principal si es diferente
+      - main
 
 jobs:
   install-poetry:
@@ -28,16 +28,21 @@ jobs:
           VERSION=$(grep "version =" pyproject.toml | awk '{print $3}' | tr -d '"')
           echo "Version: $VERSION"
           echo "::set-output name=version::$VERSION"
+          
+      - name: Read release.md file
+        run: |
+          RELEASE_BODY=$(cat release.md)
+          echo "::set-output name=release_body::$RELEASE_BODY"
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dist/console-${{ steps.extract_version.outputs.version }}.tar.gz
-          asset_name: console
+          asset_name: console-${{ steps.extract_version.outputs.version }}.tar.gz
           tag: v${{ steps.extract_version.outputs.version }}
           overwrite: true
-          body: "This is my release text"
+          body: "${{ steps.read_release.outputs.release_body }}"
 
 
 
