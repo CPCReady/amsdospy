@@ -32,11 +32,36 @@ jobs:
           VERSION=$(grep "version =" pyproject.toml | awk '{print $3}' | tr -d '"')
           echo "Version: $VERSION"
           echo "::set-output name=version::$VERSION"
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO_OWNER: keithweaver
+
+
+          
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/console-1.0.0.tar.gz
+          asset_name: console
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "This is my release text"
+
+
+
+
+
+
+      # - name: Bump version and push tag
+      #   uses: anothrNick/github-tag-action@master
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     REPO_OWNER: keithweaver
+
+
+
+
+
+
+
       # - name: Create Release
       #   env:
       #     GH_TOKEN: ${{ github.token }}
