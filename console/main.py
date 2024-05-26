@@ -18,7 +18,7 @@ from console import common as functions  # Renombrado para consistencia
 from prompt_toolkit.shortcuts import message_dialog
 
 # Configuración global
-COMMAND_LIST = ["ABOUT", "CLS", "CPC", "DISC", "MODE", "NEW", "RUN", "SAVE", "EXIT","GIT","CAT","DIR", "EMULATOR", "LCAT"]
+COMMAND_LIST = ["ABOUT", "CLS", "MODEL", "DISC", "MODE", "NEW", "RUN", "SAVE", "EXIT","GIT","CAT","DIR", "EMULATOR", "LCAT"]
 CONFIG_CPCREADY = os.path.join(os.getcwd(), "cfg", "CPCReady.cfg")
 CONFIG_HISTORY = os.path.join(os.getcwd(), "cfg", ".history")
 
@@ -35,11 +35,7 @@ style = Style.from_dict({
 
 def bye():
     print_formatted_text(
-        HTML("<white>\nCPCReady v1.0.0</white>"),
-        style=style,
-    )
-    print_formatted_text(
-        HTML("<white>Goodbye!\n</white>"),
+        HTML("<white>CPCReady Goodbye!\n</white>"),
         style=style,
     )
 
@@ -59,6 +55,8 @@ def status_toolbar():
         logo_text = "128K ORDENADOR PERSONAL"
     elif functions.readKey(CONFIG_CPCREADY, "MODEL") == "664" or  functions.readKey(CONFIG_CPCREADY, "MODEL") == "464":
         logo_text = "64K COLOUR PERSONAL COMPUTER"
+    else:
+        logo_text = "SYSTEM NOT SUPPORTED"
         
     return HTML(
         "<red> </red><green> </green><blue> </blue> <b>AMSTRAD <i>" + logo_text + " </i> "
@@ -117,6 +115,15 @@ def main():
                         sys.exit(0)
                     elif main_command == "ABOUT":
                         functions.about()
+                        print_formatted_text(HTML('\nReady'), style=style)
+                    elif main_command == "LCAT":
+                        os.system("lcat")
+                        print_formatted_text(HTML('\nReady'), style=style)
+                    elif main_command == "CAT":
+                        os.system("lcat")
+                        print_formatted_text(HTML('\nReady'), style=style)
+                    elif main_command == "DIR":
+                        os.system("lcat")
                         print_formatted_text(HTML('\nReady'), style=style)
                     else:
                         functions.executeCommand(command)

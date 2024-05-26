@@ -12,7 +12,7 @@ python-dotenv = "^1.0.1"
 configparser = "^7.0.0"
 
 [tool.poetry.scripts]
-amstrad     = "console.main:main"
+amsdospy     = "console.main:main"
 
 [build-system]
 requires = ["poetry-core"]
