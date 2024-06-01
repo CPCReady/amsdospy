@@ -14,7 +14,7 @@ from prompt_toolkit.cursor_shapes import CursorShape
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 from prompt_toolkit.styles import Style
 from prompt_toolkit.history import FileHistory
-from console import common as functions  # Renombrado para consistencia
+from amsdospy import common as functions  # Renombrado para consistencia
 from prompt_toolkit.shortcuts import message_dialog
 
 # Configuración global
