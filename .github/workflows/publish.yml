@@ -36,9 +36,9 @@ jobs:
         echo "Version: $VERSION"
         echo "::set-output name=version::$VERSION"
         
-    - name: make idsk
+    - name: compile amsdospy
       run: |
-        pip3 install poetry --break-system-packages
+        pip3 install poetry
         poetry version ${{ steps.extract_version.outputs.version }}
         poetry install
         poetry build
