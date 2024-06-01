@@ -51,6 +51,11 @@ jobs:
         echo "::set-output name=sha256::$SHA256_HASH"
       shell: bash        
   
+    - name: ${{ steps.sha256.outputs.sha256 }}
+      run: |
+        echo ${{ steps.sha256.outputs.sha256 }}
+      shell: bash     
+
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       if: ${{ github.event.inputs.release == 'true' }}
